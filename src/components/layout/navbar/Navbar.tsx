@@ -5,6 +5,7 @@ import { Icons } from "@/constants/Icons"
 import NavItems from "./NavItems"
 import { buttonVariants } from "@/components/ui/Button"
 import MobileNav from "./MobileNav"
+import Cart from "@/components/Cart/Cart"
 
 interface NavbarProps {}
 
@@ -63,10 +64,15 @@ const Navbar: FC<NavbarProps> = ({}) => {
                       />
                     </div>
                   )}
+                  <div className="ml-4 flow-root lg:ml-6">
+                    <Cart />
+                  </div>
                 </div>
               </div>
-              <div className=" lg:hidden">
+              <div className=" lg:hidden flex items-center gap-2">
                 <MobileNav />
+
+                <Cart />
               </div>
             </div>
           </div>

@@ -14,7 +14,7 @@ import Link from "next/link"
 
 import Image from "next/image"
 import { useEffect, useState } from "react"
-import { Separator } from "../ui/separator"
+import { Separator } from "../ui/Separator"
 import { buttonVariants } from "../ui/Button"
 import { formatPrice } from "@/lib/utils"
 

@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/Form"
 import { Input } from "@/components/ui/Input"
 import { cn } from "@/lib/utils"
+import { trpc } from "@/trpc/client"
 
 interface PageProps {}
 
@@ -33,9 +34,12 @@ const Page: FC<PageProps> = ({}) => {
       password: "",
     },
   })
+
+  const { mutate, isPending } = trpc.auth.createPayloadUser.useMutation({})
   const onSubmit = ({ email, password }: TAuthCredentialsValidator) => {
     console.log(email, password)
     // Send Data to server using TRPC
+    mutate({ email, password })
   }
 
   return (
@@ -65,7 +69,7 @@ const Page: FC<PageProps> = ({}) => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Username</FormLabel>
+                    <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input
                         className={cn({
@@ -88,6 +92,7 @@ const Page: FC<PageProps> = ({}) => {
                     <FormLabel>Password</FormLabel>
                     <FormControl>
                       <Input
+                        type="password"
                         className={cn({
                           "focus-visible:ring-red-500":
                             form.formState.errors.password,
@@ -100,7 +105,7 @@ const Page: FC<PageProps> = ({}) => {
                   </FormItem>
                 )}
               />
-              <Button type="submit">Sign Up</Button>
+              <Button type="submit">{isPending ? "Loading" : "Sign Up"}</Button>
             </form>
           </Form>
         </div>

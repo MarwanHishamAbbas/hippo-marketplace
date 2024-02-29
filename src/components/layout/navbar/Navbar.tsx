@@ -6,11 +6,15 @@ import NavItems from "./NavItems"
 import { buttonVariants } from "@/components/ui/Button"
 import MobileNav from "./MobileNav"
 import Cart from "@/components/Cart/Cart"
+import { getServerSideUser } from "@/lib/payload-utils"
+import { cookies } from "next/headers"
+import UserAccountNav from "@/components/auth/UserAccountNav"
 
 interface NavbarProps {}
 
-const Navbar: FC<NavbarProps> = ({}) => {
-  const user = null
+const Navbar: FC<NavbarProps> = async ({}) => {
+  const nextCookies = cookies()
+  const { user } = await getServerSideUser(nextCookies)
 
   return (
     <div className="bg-white sticky z-50 top-0 inset-x-0 h-16">
@@ -45,7 +49,7 @@ const Navbar: FC<NavbarProps> = ({}) => {
                   )}
 
                   {user ? (
-                    <h1>Hello, Marwan</h1>
+                    <UserAccountNav user={user} />
                   ) : (
                     <Link href="/sign-up" className={buttonVariants({})}>
                       Create account

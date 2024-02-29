@@ -59,7 +59,7 @@ const Page: FC<PageProps> = ({}) => {
     },
     onSuccess: ({}) => {
       toast.success("Signed in successfully")
-      router.refresh()
+
       if (origin) {
         router.push(`/${origin}`)
         return
@@ -69,6 +69,7 @@ const Page: FC<PageProps> = ({}) => {
         return
       }
       router.push("/")
+      router.refresh()
     },
   })
   const onSubmit = ({ email, password }: TAuthCredentialsValidator) => {

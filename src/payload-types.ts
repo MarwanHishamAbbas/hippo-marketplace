@@ -9,6 +9,7 @@
 export interface Config {
   collections: {
     users: User;
+    products: Product;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -29,6 +30,13 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password: string | null;
+}
+export interface Product {
+  id: string;
+  user?: (string | null) | User;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
 }
 export interface PayloadPreference {
   id: string;

@@ -1,6 +1,6 @@
-import { getPayloadClient } from "../get-payload"
-import { publicProcedure, router } from "./trpc"
-import { AuthCredentialsValidator } from "../lib/validators/account-credentials-validator"
+import { getPayloadClient } from "../../get-payload"
+import { publicProcedure, router } from "../trpc"
+import { AuthCredentialsValidator } from "../../lib/validators/account-credentials-validator"
 import { TRPCError } from "@trpc/server"
 import { z } from "zod"
 

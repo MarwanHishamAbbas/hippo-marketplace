@@ -32,7 +32,7 @@ const ProductListing: FC<ProductListingProps> = ({ product, index }) => {
     )?.label
     return (
       <Link
-        href={`/products/${product.id}`}
+        href={`/product/${product.id}`}
         className={cn("invisible h-full w-full cursor-pointer", {
           "visible animate-in fade-in-5": isVisible,
         })}

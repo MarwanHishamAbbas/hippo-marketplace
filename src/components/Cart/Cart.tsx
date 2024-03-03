@@ -17,10 +17,14 @@ import { useEffect, useState } from "react"
 import { Separator } from "../ui/Separator"
 import { buttonVariants } from "../ui/Button"
 import { formatPrice } from "@/lib/utils"
+import { useCart } from "@/hooks/use-cart"
+import { Product } from "@/payload-types"
+import CartItem from "./CartItem"
+import { ScrollArea } from "../ui/ScrollArea"
 
 const Cart = () => {
-  const items: any = []
-  const itemCount = 0
+  const { items } = useCart()
+  const itemCount = items.length
 
   const [isMounted, setIsMounted] = useState<boolean>(false)
 
@@ -29,11 +33,11 @@ const Cart = () => {
   }, [])
 
   const cartTotal = items.reduce(
-    (total: number, { product }: { product: any }) => total + product.price,
+    (total: number, { product }: { product: Product }) => total + product.price,
     0
   )
 
-  const fee = 1
+  const fee = 10
 
   return (
     <Sheet>
@@ -53,11 +57,11 @@ const Cart = () => {
         {itemCount > 0 ? (
           <>
             <div className="flex w-full flex-col pr-6">
-              {/* <ScrollArea>
+              <ScrollArea>
                 {items.map(({ product }) => (
                   <CartItem product={product} key={product.id} />
                 ))}
-              </ScrollArea> */}
+              </ScrollArea>
             </div>
             <div className="space-y-4 pr-6">
               <Separator />
